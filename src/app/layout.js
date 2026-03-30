@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR">
-      <body className="bg-[#FAFAFA]">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body>
         <Navbar />
         {children}
         <Footer />

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 function Footer() {
@@ -6,17 +5,10 @@ function Footer() {
     <div className="">
       <div className="flex flex-col md:flex-row items-start justify-center px-6 md:px-16 lg:px-32 gap-10 py-14 border-b border-gray-500/30 text-gray-500">
         <div className="w-4/5">
-          <h1 className="text-gray-700 text-2xl font-medium flex">
-            <Image
-              src={"/images/logo.png"}
-              alt="Logo"
-              width={34}
-              height={30}
-              style={{ height: "auto" }}
-              priority
-            />
+          <h1 className="font-bold text-2xl text-gray-700">
             Next<span className="text-[#FF7919]">Shop</span>
           </h1>
+          
           <p className="mt-3 text-sm">
             Na NextShop, você encontra produtos de qualidade com praticidade,
             segurança e uma experiência de compra simples e eficiente.
