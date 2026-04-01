@@ -32,7 +32,7 @@ function Navbar() {
               <Link href="/produtos">Produtos</Link>
             </li>
             <li className="text-gray-600">
-              <Link href="/contato">Contato</Link>
+              <Link href="/ajuda">Ajuda</Link>
             </li>
           </ul>
 
@@ -64,7 +64,7 @@ function Navbar() {
             <Link href="/produtos" onClick={closeMenu}>Produtos</Link>
           </li>
           <li className="text-gray-600">
-            <Link href="/contato" onClick={closeMenu}>Contato</Link>
+            <Link href="/ajuda" onClick={closeMenu}>Ajuda</Link>
           </li>
         </ul>
       )}
