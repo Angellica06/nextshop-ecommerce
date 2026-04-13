@@ -1,8 +1,12 @@
-"user client"
+'use client'
 import ProductCard from "@/components/ProductCard";
 import Image from "next/image";
+import { useProducts } from "@/hooks/useProducts";
+import Link from "next/link";
 
 export default function Home() {
+  const { products, loading, error } = useProducts(8);
+
   return (
     <div className="mx-6 md:mx-16">
       <div className="grid grid-cols lg:grid-cols-2 justify-items-center items-center bg-linear-to-b from-[#ffce51] to-[#FFF1B5] min-h-[60vh] my-6 rounded-xl mt-24 p-8 md:p-16">
@@ -28,21 +32,45 @@ export default function Home() {
 
       <div className="mb-8">
         <h2 className="text-xl font-medium text-gray-600 py-6">Produtos Populares</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </div>
+        {error && (
+          <p className="text-center text-red-600 p-3 mt-10">
+            {error}
+          </p>
+        )}
+
+        {loading ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="animate-pulse">
+
+                <div className="rounded-xl">
+                  <div className="w-full h-40 bg-gray-300 rounded-md"></div>
+                </div>
+
+                <div className="mt-3 space-y-2">
+                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+
+                  <div className="space-y-1">
+                    <div className="h-2 bg-gray-300 rounded w-full"></div>
+                    <div className="h-2 bg-gray-300 rounded w-5/6"></div>
+                  </div>
+                </div>
+
+                <div className="h-4 bg-gray-300 rounded w-1/3 mt-2"></div>
+
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products?.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
 
         <div className="flex justify-center my-10">
-          <button className="border py-2 px-5 rounded-md ">Ver Mais</button>
+          <Link className="border py-2 px-5 rounded-md" href="/produtos">Ver Mais</Link>
         </div>
       </div>
 
