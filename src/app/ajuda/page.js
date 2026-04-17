@@ -86,7 +86,7 @@ function Page() {
                 </div>
             </div>
 
-            <div className="mt-10 max-w-4xl mx-auto py-2 px-5">
+            <div className="mt-10 max-w-4xl mx-auto mb-14 py-2 px-5">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                     Perguntas frequentes
                 </h2>
