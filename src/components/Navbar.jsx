@@ -10,17 +10,10 @@ function Navbar() {
 
   return (
     <header className="bg-gray-50 fixed top-0 left-0 w-full font-sans font-medium px-4 shadow z-50">
-      <nav className="container mx-auto flex justify-around items-center py-4">
+      <nav className="container mx-auto flex justify-between items-center py-4 px-6 md:px-16">
         <h1 className="font-bold text-xl md:text-2xl text-gray-700">
           Next<span className="text-[#FF7919]">Shop</span>
         </h1>
-
-        <input
-          className="border border-gray-300 rounded-3xl mx-1 w-40 sm:w-56 md:w-74 lg:w-100 py-2 px-3 
-          focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300"
-          type="search"
-          placeholder="Buscar produto..."
-        />
 
         {/* Menu desktop */}
         <div className="flex items-center gap-6">
@@ -35,14 +28,6 @@ function Navbar() {
               <Link href="/ajuda">Ajuda</Link>
             </li>
           </ul>
-
-          {/* Carrinho */}
-          <div className="relative">
-            <BsCart2 className="text-xl text-gray-600" />
-            <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              3
-            </span>
-          </div>
 
           {/* Botão mobile */}
           <button
