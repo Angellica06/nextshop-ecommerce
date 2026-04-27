@@ -6,10 +6,28 @@ export default function Produtos() {
     const { products, loading, error } = useProducts(50);
 
     return (
-        <div className="min-h-screen mt-18 md:mt-24 mx-6 md:mx-16">
+        <div className="min-h-screen mt-18 md:mt-22 mx-6 md:mx-16">
 
             <div className="mb-8">
-                <h2 className="text-xl font-medium text-gray-600 py-6">Produtos</h2>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+
+                    <div>
+                        <h1 className="text-2xl md:text-3xl font-semibold text-gray-800">
+                            Explore nossos produtos
+                        </h1>
+
+                        <p className="text-gray-500 text-sm mt-1">
+                            Navegue, filtre e encontre produtos rapidamente
+                        </p>
+                    </div>
+
+                    <input
+                        className="border border-gray-300 rounded-3xl w-full md:w-120 py-2 px-4 
+    focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300"
+                        type="search"
+                        placeholder="Buscar produto..."
+                    />
+                </div>
 
                 {error && (
                     <p className="text-center text-red-600 p-3 mt-10">{error}</p>
