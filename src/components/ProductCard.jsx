@@ -3,7 +3,7 @@ import Image from "next/image";
 function ProductCard({ product }) {
   return (
     <div>
-      <div className="bg-[#F0F1F2] p-6 rounded-xl">
+      <div className="bg-[#F0F1F2] p-6 rounded-xl hover:scale-[1.02] transition">
         <Image
           src={product.thumbnail}
           alt={product.title}
@@ -23,7 +23,7 @@ function ProductCard({ product }) {
         </p>
       </div>
 
-      <div className="font-semibold mt-2">R$ {product.price}</div>
+      <div className="font-semibold text-lg mt-2">R$ {product.price}</div>
     </div>
   );
 }
