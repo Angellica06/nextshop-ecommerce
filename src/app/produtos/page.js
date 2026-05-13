@@ -1,9 +1,12 @@
 'use client'
+import { useState } from "react";
 import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "@/components/ProductCard";
+import { BsSearch } from "react-icons/bs";
 
 export default function Produtos() {
-    const { products, loading, error } = useProducts(50);
+    const { products, searchProducts, loading, error } = useProducts(50);
+    const [search, setSearch] = useState("");
 
     return (
         <div className="min-h-screen mt-18 md:mt-22 mx-6 md:mx-16">
@@ -21,17 +24,20 @@ export default function Produtos() {
                         </p>
                     </div>
 
-                    <input
-                        className="border border-gray-300 rounded-3xl w-full md:w-120 py-2 px-4 
-    focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300"
-                        type="search"
-                        placeholder="Buscar produto..."
-                    />
-                </div>
+                    <div className="flex sm:flex-row mt-4 gap-3">
+                        <input
+                            type="search"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Buscar produto..."
+                            className="border border-gray-300 rounded-md px-4 py-3 w-full sm:w-120 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300"
+                        />
 
-                {error && (
-                    <p className="text-center text-red-600 p-3 mt-10">{error}</p>
-                )}
+                        <button onClick={() => searchProducts(search)} className="bg-amber-500 text-white rounded-md px-6 py-3 cursor-pointer" disabled={loading}>
+                            <BsSearch className="text-xl" />
+                        </button>
+                    </div>
+                </div>
 
                 {loading ? (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -55,12 +61,20 @@ export default function Produtos() {
                             </div>
                         ))}
                     </div>
-                ) : (
+                ) : error ? (
+                    <p className="text-center text-red-600 p-3 mt-10">
+                        {error}
+                    </p>
+                ) : products?.length > 0 ? (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {products?.map(product => (
+                        {products.map(product => (
                             <ProductCard key={product.id} product={product} />
                         ))}
                     </div>
+                ) : (
+                    <p className="text-center mt-20">
+                        Nenhum produto encontrado.
+                    </p>
                 )}
             </div>
         </div>
