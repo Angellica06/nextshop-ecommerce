@@ -21,12 +21,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="">
+        <div>
           <Image
-            src={"/images/produto.png"}
+            src={"/images/products.png"}
             alt="Logo"
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             priority
           />
         </div>
