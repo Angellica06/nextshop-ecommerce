@@ -3,3 +3,12 @@
 body {
     background-color: #fafafa;
 }
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    transition: all .5s;
+    transform: scale(1.04);
+}
