@@ -10,18 +10,18 @@ export default function Home() {
 
   return (
     <div className="mx-6 md:mx-16">
-      <div className="grid grid-cols lg:grid-cols-2 justify-items-center items-center bg-linear-to-b from-[#ffce51] to-[#FFF1B5] min-h-[60vh] my-6 rounded-xl mt-24 p-8 md:p-16">
+      <div className="grid grid-cols lg:grid-cols-2 justify-items-center items-center bg-linear-to-b from-[#ffce51] to-[#FFF1B5] min-h-[60vh] my-6 rounded-xl mt-24 p-6 sm:p-10 md:p-16">
         <div>
           <p className="text-yellow-700">Oferta por tempo limitado: 30% de desconto</p>
           <h2 className="text-[2.4rem] font-bold text-gray-700">Descubra os melhores produtos com qualidade e preço imperdíveis!</h2>
           <p className="text-gray-600">Produtos selecionados com qualidade, preços especiais e ofertas por tempo limitado.</p>
-          <div className="flex gap-3 mt-3">
-            <Button className="text-white">Compre agora</Button>
-            <Button className="bg-transparent border border-gray-600 text-gray-600">Mais details</Button>
+          <div className="flex gap-3 my-3">
+            <Button className="text-white text-[.8rem] sm:text-[1rem] md:text-[1rem]">Compre agora</Button>
+            <Button className="text-[.8rem] sm:text-[1rem] md:text-[1rem] bg-transparent border border-gray-600 text-gray-600">Mais details</Button>
           </div>
         </div>
 
-        <div>
+        <div className="mt-5">
           <Image
             src={"/images/products.png"}
             alt="Logo"
@@ -72,7 +72,7 @@ export default function Home() {
         )}
 
         <div className="flex justify-center my-10">
-          <Link className="border border-amber-500 text-amber-500 py-2 px-5 rounded-3xl" href="/produtos">Ver Mais</Link>
+          <Link className="border border-amber-500 text-amber-500 py-2 px-5 rounded-3xl transition-all duration-500 hover:scale-104" href="/produtos">Ver Mais</Link>
         </div>
       </div>
 
