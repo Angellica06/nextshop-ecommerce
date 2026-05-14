@@ -1,12 +1,25 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "@/components/ProductCard";
 import { BsSearch } from "react-icons/bs";
+import { FaAnglesLeft } from "react-icons/fa6";
 
 export default function Produtos() {
-    const { products, searchProducts, loading, error } = useProducts(50);
+    const { products, searchProducts, loading, error } = useProducts(100);
     const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 24;
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const currentProducts = products.slice(start, end);
+    
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [currentPage]);
 
     return (
         <div className="min-h-screen mt-18 md:mt-22 mx-6 md:mx-16">
@@ -66,8 +79,8 @@ export default function Produtos() {
                         {error}
                     </p>
                 ) : products?.length > 0 ? (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {products.map(product => (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+                        {currentProducts.map(product => (
                             <ProductCard key={product.id} product={product} />
                         ))}
                     </div>
@@ -76,6 +89,37 @@ export default function Produtos() {
                         Nenhum produto encontrado.
                     </p>
                 )}
+            </div>
+
+            <div className="flex items-center justify-center gap-2 mt-10 mb-14">
+                <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="p-3 border rounded-md disabled:opacity-50"
+                >
+                    <FaAnglesLeft />
+                </button>
+
+                {pages.map(page => (
+                    <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`w-10 h-10 rounded-md border ${currentPage === page
+                            ? "bg-amber-500 text-white"
+                            : "hover:bg-gray-100"
+                            }`}
+                    >
+                        {page}
+                    </button>
+                ))}
+
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="p-3 border rounded-md disabled:opacity-50"
+                >
+                    <FaAnglesLeft className="rotate-180" />
+                </button>
             </div>
         </div>
     )
